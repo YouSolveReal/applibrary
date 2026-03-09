@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apps Library</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script data-goatcounter="https://sanjog.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+
+  <div class="layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="3" width="9" height="9" rx="1.5" fill="#4a9eff"/>
+          <rect x="13" y="3" width="9" height="9" rx="1.5" fill="#4a9eff" opacity="0.6"/>
+          <rect x="2" y="14" width="9" height="9" rx="1.5" fill="#4a9eff" opacity="0.6"/>
+          <rect x="13" y="14" width="9" height="9" rx="1.5" fill="#4a9eff" opacity="0.3"/>
+        </svg>
+        <div class="logo-text">
+          <span class="logo-title">Apps Library</span>
+          <span class="logo-sub">Software Showcase</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <span class="nav-label">Browse</span>
+        <a href="#" class="nav-item active" data-filter="all">
+          <svg viewBox="0 0 16 16" fill="currentColor"><path d="M1 2.5A1.5 1.5 0 012.5 1h3A1.5 1.5 0 017 2.5v3A1.5 1.5 0 015.5 7h-3A1.5 1.5 0 011 5.5v-3zm8 0A1.5 1.5 0 0110.5 1h3A1.5 1.5 0 0115 2.5v3A1.5 1.5 0 0113.5 7h-3A1.5 1.5 0 019 5.5v-3zm-8 8A1.5 1.5 0 012.5 9h3A1.5 1.5 0 017 10.5v3A1.5 1.5 0 015.5 15h-3A1.5 1.5 0 011 13.5v-3zm8 0A1.5 1.5 0 0110.5 9h3A1.5 1.5 0 0115 10.5v3A1.5 1.5 0 0113.5 15h-3A1.5 1.5 0 019 13.5v-3z"/></svg>
+          All Applications
+          <span class="nav-count" id="count-all">0</span>
+        </a>
+
+        <span class="nav-label" style="margin-top: 20px;">Categories</span>
+        <a href="#" class="nav-item" data-filter="Civil">
+          <svg viewBox="0 0 16 16" fill="currentColor"><path d="M14.763.075A.5.5 0 0115 .5v15a.5.5 0 01-.5.5h-3a.5.5 0 01-.5-.5V14h-1v1.5a.5.5 0 01-.5.5h-9a.5.5 0 01-.5-.5V10a.5.5 0 01.342-.474L6 7.64V4.5a.5.5 0 01.276-.447l8-4a.5.5 0 01.487.022zM6 8.694L1 10.36V15h5V8.694zM7 15h2v-1.5a.5.5 0 01.5-.5h2a.5.5 0 01.5.5V15h2V1.309l-7 3.5V15z"/></svg>
+          Civil Engineering
+          <span class="nav-count" id="count-Civil">0</span>
+        </a>
+        <a href="#" class="nav-item" data-filter="CAD">
+          <svg viewBox="0 0 16 16" fill="currentColor"><path d="M0 5a2 2 0 012-2h7.5a2 2 0 011.983 1.738l3.11-1.382A1 1 0 0116 4.269v7.462a1 1 0 01-1.406.913l-3.111-1.382A2 2 0 019.5 13H2a2 2 0 01-2-2V5z"/></svg>
+          CAD / Drawing
+          <span class="nav-count" id="count-CAD">0</span>
+        </a>
+        <a href="#" class="nav-item" data-filter="Utility">
+          <svg viewBox="0 0 16 16" fill="currentColor"><path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 01-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 01.872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 012.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 012.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 01.872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 01-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 01-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 110-5.858 2.929 2.929 0 010 5.858z"/></svg>
+          Utilities
+          <span class="nav-count" id="count-Utility">0</span>
+        </a>
+        <a href="#" class="nav-item" data-filter="Structural">
+          <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8.354 1.146a.5.5 0 00-.708 0l-6 6A.5.5 0 002 7.5v7a.5.5 0 00.5.5h4a.5.5 0 00.5-.5v-4h2v4a.5.5 0 00.5.5h4a.5.5 0 00.5-.5v-7a.5.5 0 00-.146-.354L13 5.793V2.5a.5.5 0 00-.5-.5h-1a.5.5 0 00-.5.5v1.293L8.354 1.146z"/></svg>
+          Structural
+          <span class="nav-count" id="count-Structural">0</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <span>v1.0.0</span>
+      </div>
+    </aside>
+
+    <!-- Main content -->
+    <main class="main">
+      <div class="main-header">
+        <div class="header-title-area">
+          <h1 class="main-title" id="section-title">All Applications</h1>
+          <span class="result-count" id="result-count"></span>
+        </div>
+        <div class="search-wrap">
+          <svg class="search-icon" viewBox="0 0 16 16" fill="currentColor">
+            <path d="M11.742 10.344a6.5 6.5 0 10-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 001.415-1.414l-3.85-3.85a1.007 1.007 0 00-.115-.099zM12 6.5a5.5 5.5 0 11-11 0 5.5 5.5 0 0111 0z"/>
+          </svg>
+          <input type="text" id="search-input" class="search-input" placeholder="Search applications..." />
+        </div>
+      </div>
+
+      <div class="card-grid" id="card-grid">
+        <!-- Cards injected by app.js -->
+      </div>
+
+      <div class="empty-state" id="empty-state" style="display:none;">
+        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="32" cy="28" r="16" stroke="#c5cdd8" stroke-width="2"/>
+          <path d="M44 40l10 10" stroke="#c5cdd8" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <p>No applications match your search.</p>
+      </div>
+    </main>
+
+  </div>
+
+  <!-- Detail Modal -->
+  <div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-app-name">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <span class="modal-app-name" id="modal-app-name"></span>
+          <span class="modal-version" id="modal-version"></span>
+          <span class="modal-category" id="modal-category"></span>
+        </div>
+        <button class="modal-close" id="modal-close" aria-label="Close">
+          <svg viewBox="0 0 16 16" fill="currentColor">
+            <path d="M2.146 2.854a.5.5 0 11.708-.708L8 7.293l5.146-5.147a.5.5 0 01.708.708L8.707 8l5.147 5.146a.5.5 0 01-.708.708L8 8.707l-5.146 5.147a.5.5 0 01-.708-.708L7.293 8 2.146 2.854z"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="modal-thumb-wrap" id="modal-thumb-wrap"></div>
+
+        <section class="modal-section">
+          <h3 class="modal-section-title">About</h3>
+          <p class="modal-desc" id="modal-desc"></p>
+        </section>
+
+        <section class="modal-section" id="modal-features-section">
+          <h3 class="modal-section-title">Key Features</h3>
+          <ul class="modal-features" id="modal-features"></ul>
+        </section>
+
+        <section class="modal-section" id="modal-req-section">
+          <h3 class="modal-section-title">System Requirements</h3>
+          <p class="modal-req" id="modal-req"></p>
+        </section>
+
+        <div class="modal-meta" id="modal-meta"></div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="modal-btn-close-action" id="modal-btn-close-action">Close</button>
+        <span id="modal-download-btn"></span>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
