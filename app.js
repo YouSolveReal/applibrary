@@ -181,6 +181,8 @@ function thumbnailHtml(screenshots, name) {
   ).join("");
   return `<div class="card-carousel">
     ${slides}
+    <button class="card-carousel-prev" aria-label="Previous">&#8249;</button>
+    <button class="card-carousel-next" aria-label="Next">&#8250;</button>
     <div class="card-carousel-dots">${dots}</div>
   </div>`;
 }
@@ -258,32 +260,29 @@ function downloadBtnHtml(url, size) {
 /* ─────────────────────────────────────────────
    Card Carousel (auto-play)
 ───────────────────────────────────────────── */
-const cardIntervals = [];
-
 function wireCardCarousels() {
-  // Clear any running intervals from previous render
-  while (cardIntervals.length) clearInterval(cardIntervals.pop());
-
   document.querySelectorAll(".card-carousel").forEach(carousel => {
     const slides = carousel.querySelectorAll(".card-carousel-slide");
     const dots   = carousel.querySelectorAll(".card-carousel-dot");
     if (slides.length < 2) return;
     let current = 0;
-    let paused  = false;
 
-    function advance() {
-      if (paused) return;
+    function goTo(idx) {
       slides[current].classList.remove("active");
       dots[current].classList.remove("active");
-      current = (current + 1) % slides.length;
+      current = (idx + slides.length) % slides.length;
       slides[current].classList.add("active");
       dots[current].classList.add("active");
     }
 
-    carousel.addEventListener("mouseenter", () => { paused = true; });
-    carousel.addEventListener("mouseleave", () => { paused = false; });
-
-    cardIntervals.push(setInterval(advance, 3000));
+    carousel.querySelector(".card-carousel-prev").addEventListener("click", e => {
+      e.stopPropagation();
+      goTo(current - 1);
+    });
+    carousel.querySelector(".card-carousel-next").addEventListener("click", e => {
+      e.stopPropagation();
+      goTo(current + 1);
+    });
   });
 }
 
