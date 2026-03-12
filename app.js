@@ -39,7 +39,7 @@ const apps = [
     requirements: "Windows 10 or Windows 11 (64-bit recommended)\n.NET Framework 4.8\nAutoCAD 2007–2025 (any verticals with COM API)\n4 GB RAM minimum (8 GB recommended for large networks)\n50 MB disk space",
     releaseDate: "March 2026",
     thumbnail: "acadtool.jpg",
-    downloadUrl: "http://sipnepal.org/shareable/acadtoolv2/setup.exe"
+    downloadUrl: "https://sipnepal.org/shareable/acadtoolv2/setup.exe"
    },
   {
     id: "app-002",
@@ -59,7 +59,7 @@ const apps = [
     requirements: "Windows 10 or Windows 11 (64-bit recommended)\n.NET Framework 4.8\n50 MB disk space\nNo additional software required",
     releaseDate: "February 2026",
     thumbnail: "constructionutility.jpg",
-    downloadUrl: "http://sipnepal.org/shareable/constructionutility/setup.exe"
+    downloadUrl: "https://sipnepal.org/shareable/constructionutility/setup.exe"
   },
   // {
   //   id: "app-003",
