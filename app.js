@@ -38,7 +38,7 @@ const apps = [
     ],
     requirements: "Windows 10 or Windows 11 (64-bit recommended)\n.NET Framework 4.8\nAutoCAD 2007–2025 (any verticals with COM API)\n4 GB RAM minimum (8 GB recommended for large networks)\n50 MB disk space",
     releaseDate: "March 2026",
-    thumbnail: "acadtool.jpg",
+    screenshots: ["images/acadtool.jpg"],
     downloadUrl: "https://bit.ly/acadtoolv2"
    },
   {
@@ -58,7 +58,7 @@ const apps = [
     ],
     requirements: "Windows 10 or Windows 11 (64-bit recommended)\n.NET Framework 4.8\n50 MB disk space\nNo additional software required",
     releaseDate: "February 2026",
-    thumbnail: "constructionutility.jpg",
+    screenshots: ["images/constructionutility.jpg"],
     downloadUrl: "https://bit.ly/constructionutility"
   },
   {
@@ -79,7 +79,7 @@ const apps = [
     ],
     requirements: "Windows 10 or Windows 11 (64-bit recommended)\n.NET Framework 4.8\n30 MB disk space\nNo additional software required",
     releaseDate: "2024",
-    thumbnail: "vibration.jpg",
+    screenshots: ["images/vibration.jpg"],
     downloadUrl: "https://bit.ly/structurevibration"
   }
 ];
@@ -162,13 +162,61 @@ function categoryClass(cat) {
   return known.includes(cat) ? `cat-${cat}` : "cat-default";
 }
 
-function thumbnailHtml(src, name) {
+function thumbnailHtml(screenshots, name) {
+  const src = screenshots && screenshots.length > 0 ? screenshots[0] : "";
   if (src && src.trim() !== "") {
     return `<img class="card-thumb" src="${escapeHtml(src)}" alt="${escapeHtml(name)} screenshot" loading="lazy"
               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
             <div class="card-thumb-placeholder" style="display:none">${placeholderSvg()}</div>`;
   }
   return `<div class="card-thumb-placeholder">${placeholderSvg()}</div>`;
+}
+
+function galleryHtml(screenshots, name) {
+  const imgs = (screenshots && screenshots.length > 0) ? screenshots : [];
+  if (imgs.length === 0) {
+    return `<div class="modal-thumb-placeholder">${placeholderSvg()}</div>`;
+  }
+  if (imgs.length === 1) {
+    return `<img src="${escapeHtml(imgs[0])}" alt="${escapeHtml(name)} screenshot"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="modal-thumb-placeholder" style="display:none">${placeholderSvg()}</div>`;
+  }
+  const slides = imgs.map((src, i) =>
+    `<img class="gallery-slide${i === 0 ? " active" : ""}" src="${escapeHtml(src)}"
+          alt="${escapeHtml(name)} screenshot ${i + 1}"
+          onerror="this.style.opacity='0'">`
+  ).join("");
+  const dots = imgs.map((_, i) =>
+    `<button class="gallery-dot${i === 0 ? " active" : ""}" data-idx="${i}" aria-label="Screenshot ${i + 1}"></button>`
+  ).join("");
+  return `
+    <div class="gallery">
+      <div class="gallery-slides">${slides}</div>
+      <button class="gallery-prev" aria-label="Previous">&#8249;</button>
+      <button class="gallery-next" aria-label="Next">&#8250;</button>
+      <div class="gallery-dots">${dots}</div>
+    </div>`;
+}
+
+function wireGallery(container) {
+  const gallery = container.querySelector(".gallery");
+  if (!gallery) return;
+  const slides = gallery.querySelectorAll(".gallery-slide");
+  const dots   = gallery.querySelectorAll(".gallery-dot");
+  let current  = 0;
+
+  function goTo(idx) {
+    slides[current].classList.remove("active");
+    dots[current].classList.remove("active");
+    current = (idx + slides.length) % slides.length;
+    slides[current].classList.add("active");
+    dots[current].classList.add("active");
+  }
+
+  gallery.querySelector(".gallery-prev").addEventListener("click", () => goTo(current - 1));
+  gallery.querySelector(".gallery-next").addEventListener("click", () => goTo(current + 1));
+  dots.forEach(dot => dot.addEventListener("click", () => goTo(+dot.dataset.idx)));
 }
 
 function placeholderSvg() {
@@ -227,7 +275,7 @@ function renderCards() {
 
   grid.innerHTML = filtered.map(app => `
     <article class="app-card" data-id="${escapeHtml(app.id)}">
-      ${thumbnailHtml(app.thumbnail, app.name)}
+      ${thumbnailHtml(app.screenshots, app.name)}
       <div class="card-body">
         <div class="card-title-row">
           <span class="card-name">${escapeHtml(app.name)}</span>
@@ -305,16 +353,10 @@ function openModal(appId) {
   catEl.textContent  = app.category;
   catEl.className    = `modal-category ${categoryClass(app.category)}`;
 
-  // Thumbnail
+  // Screenshots gallery
   const thumbWrap = document.getElementById("modal-thumb-wrap");
-  if (app.thumbnail && app.thumbnail.trim() !== "") {
-    thumbWrap.innerHTML = `
-      <img src="${escapeHtml(app.thumbnail)}" alt="${escapeHtml(app.name)} screenshot"
-           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-      <div class="modal-thumb-placeholder" style="display:none">${placeholderSvg()}</div>`;
-  } else {
-    thumbWrap.innerHTML = `<div class="modal-thumb-placeholder">${placeholderSvg()}</div>`;
-  }
+  thumbWrap.innerHTML = galleryHtml(app.screenshots, app.name);
+  wireGallery(thumbWrap);
 
   // About
   document.getElementById("modal-desc").textContent = app.details || app.description;
