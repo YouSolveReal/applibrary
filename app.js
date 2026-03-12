@@ -21,55 +21,62 @@
 const apps = [
   {
     id: "app-001",
-    name: "Sample Application One",
+    name: "AcadTool V2.0",
     version: "1.0.0",
-    category: "Civil",
-    description: "A placeholder for your first application. Replace this entry with real data including name, version, description, and a download link.",
-    details: "This is a detailed description of Sample Application One. Replace this text with a comprehensive overview of what the application does, the problem it solves, and who it is intended for. You can write multiple sentences here — there is no length limit in the modal view.",
+    category: "CAD",
+    description: "A Windows desktop utility that extends AutoCAD with specialized tools for civil engineering: layer management, coordinate drafting, EPANET water network visualization, and KML/DXF geospatial conversion.",
+    details: "AcadTool V2.0 is a Windows desktop utility that extends AutoCAD with specialized tools for civil engineering and infrastructure design. It connects directly to a running AutoCAD session via COM automation, enabling layer management, coordinate drafting, water distribution network visualization, and geospatial data conversion - all from a lightweight side panel. Designed for civil engineers, CAD operators, surveyors, and water utility professionals, AcadTool V2.0 bridges the gap between raw field and production-ready drawings.",
     features: [
-      "Feature one — describe a key capability of the application",
-      "Feature two — describe another important function",
-      "Feature three — mention a unique or notable aspect",
-      "Feature four — list an additional benefit for users"
+      "Layer management - turn off layers, move objects between layers, delete layers, and export full layer reports to Excel with one click",
+      "Calculate and annotate lengths of lines, arcs, and polylines; annotate arc radii with configurable decimal precision and text formatting",
+      "Generate parametric coordinate grids with configurable intervals and labels; place survey points, text labels, and polylines from data files",
+      "Draw complete EPANET water network layouts in AutoCAD from .INP files - junctions, reservoirs, tanks, pipes, pumps, and valves as intelligent CAD blocks",
+      "Overlay EPANET simulation results from .RPT files - display pressure, flow, demand, and elevation per node with auto-generated flow-direction arrows",
+      "Convert AutoCAD drawings back to EPANET .INP format using layer-based role assignment, with automatic node snapping and topology validation",
+      "Convert KML placemarks to DXF with automatic WGS84 → UTM projection (Zones 44N and 45N); export KML nodes to structured CSV survey data",
+      "Connects to AutoCAD 2007–2025 via COM automation with auto-detection"
     ],
-    requirements: "Windows 10 / 11 (64-bit)\n.NET 6.0 Runtime or later\n4 GB RAM minimum\n200 MB disk space",
+    requirements: "Windows 10 or Windows 11 (64-bit recommended)\n.NET Framework 4.8\nAutoCAD 2007–2025 (any verticals with COM API)\n4 GB RAM minimum (8 GB recommended for large networks)\n50 MB disk space",
     releaseDate: "March 2026",
-    thumbnail: "",
-    downloadUrl: ""
-  },
+    thumbnail: "acadtool.jpg",
+    downloadUrl: "http://sipnepal.org/shareable/acadtoolv2/setup.exe"
+   },
   {
     id: "app-002",
-    name: "Sample Application Two",
-    version: "2.1.0",
-    category: "CAD",
-    description: "A placeholder for your second application. Add a screenshot to the assets folder and set the thumbnail path to display it here.",
-    details: "This is a detailed description of Sample Application Two. Add a screenshot image to the assets/ folder and update the thumbnail field to show it on the card and in this modal. Replace all placeholder text with the actual application information before publishing.",
+    name: "Construction Utility",
+    version: "1.0.0",
+    category: "Civil",
+    description: "A Windows desktop tool for estimating construction material quantities and costs - covering Plaster Work, Brick Work, and Plain Cement Concrete (PCC) with configurable material rates and real-time cost breakdowns.",
+    details: "Construction Utility is a Windows desktop application designed for civil engineers, quantity surveyors, and construction estimators. It automates material quantity calculations for three common construction activities - plaster work, brick work, and plain cement concrete - based on user-supplied dimensions and mix ratios. All material unit costs (cement, sand, aggregate, bricks, water) are stored in a local SQLite database and can be updated directly from the app, producing instant line-item cost breakdowns without any manual spreadsheet work.",
     features: [
-      "Feature one — describe a key capability of the application",
-      "Feature two — describe another important function",
-      "Feature three — mention a unique or notable aspect"
+      "Plaster Work estimator: enter structural dimensions (length × breadth × thickness) or total wet volume; automatically computes dry volume (×1.4 factor), cement bags, sand volume, and water volume from a user-defined mix ratio",
+      "Brick Work estimator: enter wall dimensions and mortar mix ratio; calculates number of bricks with and without wastage loss, mortar wet/dry volumes, and all constituent material quantities",
+      "PCC (Plain Cement Concrete) estimator: accepts separate sand and aggregate ratios; applies ×1.5 dry-volume factor; produces a full material breakdown for cement, sand, and coarse aggregate",
+      "Real-time cost analysis: each calculator generates a line-item cost table (Description, Quantity, Unit, Unit Cost, Total Cost) displayed in a DataGridView for instant review",
+      "Configurable material rates: cement, sand, aggregate, and brick unit prices - plus brick dimensions, wastage/loss percentage, and output decimal precision - stored in a local SQLite database and editable from a dedicated Materials tab",
+      "Two input modes per calculator - Structural Dimensions mode and Total Volume mode - selectable via radio buttons to suit available site data",
     ],
-    requirements: "Windows 10 / 11 (64-bit)\n.NET 6.0 Runtime or later\n4 GB RAM minimum",
+    requirements: "Windows 10 or Windows 11 (64-bit recommended)\n.NET Framework 4.8\n50 MB disk space\nNo additional software required",
     releaseDate: "February 2026",
-    thumbnail: "",
-    downloadUrl: ""
+    thumbnail: "constructionutility.jpg",
+    downloadUrl: "http://sipnepal.org/shareable/constructionutility/setup.exe"
   },
-  {
-    id: "app-003",
-    name: "Sample Application Three",
-    version: "1.5.2",
-    category: "Structural",
-    description: "A placeholder for your third application. Set downloadUrl to a real file path or URL to enable the download button.",
-    details: "This is a detailed description of Sample Application Three. Once you set the downloadUrl field to a real file path or URL, the Download button on the card and inside this modal will become active. Replace this placeholder text with a genuine description of the application.",
-    features: [
-      "Feature one — describe a key capability of the application",
-      "Feature two — describe another important function"
-    ],
-    requirements: "Windows 10 / 11 (64-bit)\n.NET 6.0 Runtime or later\n4 GB RAM minimum",
-    releaseDate: "January 2026",
-    thumbnail: "",
-    downloadUrl: ""
-  }
+  // {
+  //   id: "app-003",
+  //   name: "Sample Application Three",
+  //   version: "1.5.2",
+  //   category: "Structural",
+  //   description: "A placeholder for your third application. Set downloadUrl to a real file path or URL to enable the download button.",
+  //   details: "This is a detailed description of Sample Application Three. Once you set the downloadUrl field to a real file path or URL, the Download button on the card and inside this modal will become active. Replace this placeholder text with a genuine description of the application.",
+  //   features: [
+  //     "Feature one — describe a key capability of the application",
+  //     "Feature two — describe another important function"
+  //   ],
+  //   requirements: "Windows 10 / 11 (64-bit)\n.NET 6.0 Runtime or later\n4 GB RAM minimum",
+  //   releaseDate: "January 2026",
+  //   thumbnail: "",
+  //   downloadUrl: ""
+  // }
 ];
 
 /* ─────────────────────────────────────────────

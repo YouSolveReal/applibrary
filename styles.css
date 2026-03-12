@@ -270,7 +270,7 @@ a {
 .card-thumb {
   width: 100%;
   aspect-ratio: 16 / 9;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
   background: #e8edf3;
 }
@@ -348,10 +348,10 @@ a {
   color: #5a6a7a;
   line-height: 1.55;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  flex: 1;
+  min-height: calc(1.55em * 2);
 }
 
 /* Card footer */
@@ -462,7 +462,7 @@ a {
 /* ─────────────────────────────────────────────
    Responsive
 ───────────────────────────────────────────── */
-@media (max-width: 1100px) {
+@media (max-width: 760px) {
   .card-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -636,8 +636,9 @@ a {
 .modal-thumb-wrap img {
   width: 100%;
   aspect-ratio: 16 / 9;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
+  background: #e8edf3;
 }
 
 .modal-thumb-placeholder {
