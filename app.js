@@ -61,22 +61,27 @@ const apps = [
     thumbnail: "constructionutility.jpg",
     downloadUrl: "https://bit.ly/constructionutility"
   },
-  // {
-  //   id: "app-003",
-  //   name: "Sample Application Three",
-  //   version: "1.5.2",
-  //   category: "Structural",
-  //   description: "A placeholder for your third application. Set downloadUrl to a real file path or URL to enable the download button.",
-  //   details: "This is a detailed description of Sample Application Three. Once you set the downloadUrl field to a real file path or URL, the Download button on the card and inside this modal will become active. Replace this placeholder text with a genuine description of the application.",
-  //   features: [
-  //     "Feature one — describe a key capability of the application",
-  //     "Feature two — describe another important function"
-  //   ],
-  //   requirements: "Windows 10 / 11 (64-bit)\n.NET 6.0 Runtime or later\n4 GB RAM minimum",
-  //   releaseDate: "January 2026",
-  //   thumbnail: "",
-  //   downloadUrl: ""
-  // }
+  {
+    id: "app-003",
+    name: "Structural Dynamics & Vibration Analysis",
+    version: "1.0.1",
+    category: "Structural",
+    description: "A Windows desktop SDOF vibration analysis tool for structural and earthquake engineering education. Computes and visualizes time-history displacement responses for four vibration cases with interactive plots and tabulated data.",
+    details: "Structural Dynamics & Vibration Analysis is a Windows desktop application developed as part of a Masters in Earthquake Engineering at Khwopa Engineering College. It implements closed-form analytical solutions for four Single-Degree-of-Freedom (SDOF) vibration cases: undamped free, damped free, undamped forced, and damped forced vibration. Each module produces an interactive displacement time-history plot and a tabulated numerical output side by side. All input parameters are edited through a PropertyGrid that instantly re-draws the chart on any change — no submit button required. An MDI shell keeps all analysis windows open simultaneously for easy cross-comparison.",
+    features: [
+      "Four SDOF analysis modules: Undamped Free, Damped Free, Undamped Forced, and Damped Forced Vibration — each with closed-form analytical solutions",
+      "Damped Free Vibration Comparison panel: 2×2 grid showing responses at 2%, 5%, 10%, and 20% damping ratios simultaneously for direct visual comparison",
+      "Interactive NPlot charts with pan, zoom, anti-aliased rendering, equilibrium reference line, and legend; three-curve display (Transient, Steady-State, Total) on forced vibration modules",
+      "PropertyGrid-driven parameter input with instant live chart updates — change any value and the plot redraws immediately",
+      "Tabulated displacement data (t, u(t)) in a DataGridView alongside every plot, rounded to 3 decimal places",
+      "Built-in HTML theory and derivation browser with governing equations and formula derivations for all four vibration cases — no internet required",
+      "Chart export to JPEG or BMP; MDI window management with Cascade, Tile Vertical, Tile Horizontal, and Close All"
+    ],
+    requirements: "Windows 10 or Windows 11 (64-bit recommended)\n.NET Framework 4.8\n30 MB disk space\nNo additional software required",
+    releaseDate: "2024",
+    thumbnail: "",
+    downloadUrl: "https://bit.ly/structurevibration"
+  }
 ];
 
 /* ─────────────────────────────────────────────
