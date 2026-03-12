@@ -79,7 +79,7 @@ const apps = [
     ],
     requirements: "Windows 10 or Windows 11 (64-bit recommended)\n.NET Framework 4.8\n30 MB disk space\nNo additional software required",
     releaseDate: "2024",
-    screenshots: ["images/vibration.jpg"],
+    screenshots: ["images/vibration.jpg","images/vibration1.jpg","images/vibration2.jpg","images/vibration3.jpg","images/vibration4.jpg"],
     downloadUrl: "https://bit.ly/structurevibration"
   }
 ];
@@ -163,13 +163,26 @@ function categoryClass(cat) {
 }
 
 function thumbnailHtml(screenshots, name) {
-  const src = screenshots && screenshots.length > 0 ? screenshots[0] : "";
-  if (src && src.trim() !== "") {
-    return `<img class="card-thumb" src="${escapeHtml(src)}" alt="${escapeHtml(name)} screenshot" loading="lazy"
+  const imgs = (screenshots && screenshots.length > 0) ? screenshots : [];
+  if (imgs.length === 0) {
+    return `<div class="card-thumb-placeholder">${placeholderSvg()}</div>`;
+  }
+  if (imgs.length === 1) {
+    return `<img class="card-thumb" src="${escapeHtml(imgs[0])}" alt="${escapeHtml(name)} screenshot" loading="lazy"
               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
             <div class="card-thumb-placeholder" style="display:none">${placeholderSvg()}</div>`;
   }
-  return `<div class="card-thumb-placeholder">${placeholderSvg()}</div>`;
+  const slides = imgs.map((src, i) =>
+    `<img class="card-carousel-slide${i === 0 ? " active" : ""}" src="${escapeHtml(src)}"
+          alt="${escapeHtml(name)} screenshot ${i + 1}" loading="lazy">`
+  ).join("");
+  const dots = imgs.map((_, i) =>
+    `<span class="card-carousel-dot${i === 0 ? " active" : ""}"></span>`
+  ).join("");
+  return `<div class="card-carousel">
+    ${slides}
+    <div class="card-carousel-dots">${dots}</div>
+  </div>`;
 }
 
 function galleryHtml(screenshots, name) {
@@ -240,6 +253,38 @@ function downloadBtnHtml(url, size) {
     </svg>
     ${label}
   </${tag}>`;
+}
+
+/* ─────────────────────────────────────────────
+   Card Carousel (auto-play)
+───────────────────────────────────────────── */
+const cardIntervals = [];
+
+function wireCardCarousels() {
+  // Clear any running intervals from previous render
+  while (cardIntervals.length) clearInterval(cardIntervals.pop());
+
+  document.querySelectorAll(".card-carousel").forEach(carousel => {
+    const slides = carousel.querySelectorAll(".card-carousel-slide");
+    const dots   = carousel.querySelectorAll(".card-carousel-dot");
+    if (slides.length < 2) return;
+    let current = 0;
+    let paused  = false;
+
+    function advance() {
+      if (paused) return;
+      slides[current].classList.remove("active");
+      dots[current].classList.remove("active");
+      current = (current + 1) % slides.length;
+      slides[current].classList.add("active");
+      dots[current].classList.add("active");
+    }
+
+    carousel.addEventListener("mouseenter", () => { paused = true; });
+    carousel.addEventListener("mouseleave", () => { paused = false; });
+
+    cardIntervals.push(setInterval(advance, 3000));
+  });
 }
 
 /* ─────────────────────────────────────────────
@@ -319,6 +364,9 @@ function renderCards() {
       if (newCount !== null) setCountDisplay(app.id, newCount);
     });
   });
+
+  // Wire up card auto-carousels
+  wireCardCarousels();
 
   // Fetch and display current counts (non-blocking)
   loadAllCounts();
