@@ -58,7 +58,7 @@ const apps = [
     ],
     requirements: "Windows 10 or Windows 11 (64-bit recommended)\n.NET Framework 4.8\n50 MB disk space\nNo additional software required",
     releaseDate: "February 2026",
-    screenshots: ["images/constructionutility.jpg"],
+    screenshots: ["images/constructionutility.jpg","images/constructionutility1.jpg","images/constructionutility2.jpg","images/constructionutility3.jpg"],
     downloadUrl: "https://bit.ly/constructionutility"
   },
   {
@@ -81,6 +81,25 @@ const apps = [
     releaseDate: "2024",
     screenshots: ["images/vibration.jpg","images/vibration1.jpg","images/vibration2.jpg","images/vibration3.jpg","images/vibration4.jpg"],
     downloadUrl: "https://bit.ly/structurevibration"
+  },
+  {
+    id: "app-004",
+    name: "Land Area Converter",
+    version: "1.0.0",
+    category: "Utility",
+    description: "A Windows desktop utility that converts land area measurements between metric units (Sq.m, Sq.ft) and traditional Nepali-Indian cadastral units (Ropani-Aana-Paisa-Daam and Bigha-Kattha-Dhur-Kanwa).",
+    details: "Land Area Converter is a lightweight Windows desktop utility for civil engineers, surveyors, land administrators, and property professionals working in Nepal and northern India. It covers all 16 conversion combinations across four unit systems: Square Metres, Square Feet, Ropani-Aana-Paisa-Daam (RAPD), and Bigha-Kattha-Dhur-Kanwa (BKDK). Select a source and destination unit from the dropdowns and the result updates in real time as you type — no button press required. Traditional multi-part units are displayed and entered as separate sub-unit fields (e.g. 1 Ropani 8 Aana 2 Paisa 1 Daam), so reading and entering cadastral descriptions from land records or field surveys is direct and unambiguous.",
+    features: [
+      "Converts between all four unit systems - Sq.m, Sq.ft, Ropani-Aana-Paisa-Daam (RAPD), and Bigha-Kattha-Dhur-Kanwa (BKDK) - covering all 16 possible conversion pairs",
+      "Real-time conversion",
+      "Multi-part sub-unit display: traditional unit results are shown in separate labelled fields (Ropani / Aana / Paisa / Daam and Bigha / Kattha / Dhur / Kanwa) matching the format used in land records",
+      "Supports full RAPD and BKDK input: enter each sub-unit independently when converting from traditional units to metric or cross-converting between the two cadastral systems",
+      "Conversion factors: 1 Ropani = 508.7371 m², 1 Bigha = 6 772.63 m², 1 Sq.ft = 0.0929 m²; sub-unit hierarchy: 1 Ropani = 16 Aana = 64 Paisa = 256 Daam; 1 Bigha = 20 Kattha = 400 Dhur = 6 400 Kanwa"
+    ],
+    requirements: "Windows 10 or Windows 11 (64-bit recommended)\n.NET Framework 4.8\nNo additional software required\n< 5 MB disk space",
+    releaseDate: "March 2026",
+    screenshots: ["images/landarea1.jpg","images/landarea2.jpg","images/landarea3.jpg"],
+    downloadUrl: "https://bit.ly/landareaconvertor"
   }
 ];
 
