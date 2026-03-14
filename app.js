@@ -6,7 +6,7 @@
  *   id           {string}    Unique identifier (e.g. "app-001")
  *   name         {string}    Display name
  *   version      {string}    Version string (e.g. "1.2.0")
- *   category     {string}    One of: "Civil" | "CAD" | "Utility" | "Structural"
+ *   category     {string}    One of: "Civil" | "CAD" | "Utility" | "Structural" | "Academic"
  *   description  {string}    Short card summary (2 lines max)
  *   details      {string}    Full description shown in modal (no length limit)
  *   features     {string[]}  Bullet-point list of key features for the modal
@@ -16,6 +16,8 @@
  *                            Set to "" to show a placeholder
  *   downloadUrl  {string}    Direct download URL or file path
  *                            Set to "" or "#" to show a disabled button
+ *   sourceUrl    {string}    (optional) Public GitHub repository URL
+ *                            Omit or set to "" to hide the Source Code button
  */
 
 const apps = [
@@ -24,6 +26,7 @@ const apps = [
     name: "AcadTool V2.0",
     version: "1.0.0",
     category: "CAD",
+    tags: [".NET 4.8", "AutoCAD", "COM API", "KML/DXF"],
     description: "A Windows desktop utility that extends AutoCAD with specialized tools for civil engineering: layer management, coordinate drafting, EPANET water network visualization, and KML/DXF geospatial conversion.",
     details: "AcadTool V2.0 is a Windows desktop utility that extends AutoCAD with specialized tools for civil engineering and infrastructure design. It connects directly to a running AutoCAD session via COM automation, enabling layer management, coordinate drafting, water distribution network visualization, and geospatial data conversion - all from a lightweight side panel. Designed for civil engineers, CAD operators, surveyors, and water utility professionals, AcadTool V2.0 bridges the gap between raw field and production-ready drawings.",
     features: [
@@ -39,13 +42,15 @@ const apps = [
     requirements: "Windows 10 or Windows 11 (64-bit recommended)\n.NET Framework 4.8\nAutoCAD 2007–2025 (any verticals with COM API)\n4 GB RAM minimum (8 GB recommended for large networks)\n50 MB disk space",
     releaseDate: "March 2026",
     screenshots: ["images/acadtool.jpg"],
-    downloadUrl: "https://bit.ly/acadtoolv2"
+    downloadUrl: "https://bit.ly/acadtoolv2",
+    sourceUrl:   ""
    },
   {
     id: "app-002",
     name: "Construction Utility",
     version: "1.0.0",
     category: "Civil",
+    tags: [".NET 4.8", "SQLite", "WinForms"],
     description: "A Windows desktop tool for estimating construction material quantities and costs - covering Plaster Work, Brick Work, and Plain Cement Concrete (PCC) with configurable material rates and real-time cost breakdowns.",
     details: "Construction Utility is a Windows desktop application designed for civil engineers, quantity surveyors, and construction estimators. It automates material quantity calculations for three common construction activities - plaster work, brick work, and plain cement concrete - based on user-supplied dimensions and mix ratios. All material unit costs (cement, sand, aggregate, bricks, water) are stored in a local SQLite database and can be updated directly from the app, producing instant line-item cost breakdowns without any manual spreadsheet work.",
     features: [
@@ -59,13 +64,15 @@ const apps = [
     requirements: "Windows 10 or Windows 11 (64-bit recommended)\n.NET Framework 4.8\n50 MB disk space\nNo additional software required",
     releaseDate: "February 2026",
     screenshots: ["images/constructionutility.jpg","images/constructionutility1.jpg","images/constructionutility2.jpg","images/constructionutility3.jpg"],
-    downloadUrl: "https://bit.ly/constructionutility"
+    downloadUrl: "https://bit.ly/constructionutility",
+    sourceUrl:   ""
   },
   {
     id: "app-003",
     name: "Structural Dynamics & Vibration Analysis",
     version: "1.0.1",
     category: "Structural",
+    tags: [".NET 4.8", "NPlot", "SDOF", "WinForms"],
     description: "A Windows desktop SDOF vibration analysis tool for structural and earthquake engineering education. Computes and visualizes time-history displacement responses for four vibration cases with interactive plots and tabulated data.",
     details: "Structural Dynamics & Vibration Analysis is a Windows desktop application developed as part of a Masters in Earthquake Engineering at Khwopa Engineering College. It implements closed-form analytical solutions for four Single-Degree-of-Freedom (SDOF) vibration cases: undamped free, damped free, undamped forced, and damped forced vibration. Each module produces an interactive displacement time-history plot and a tabulated numerical output side by side. All input parameters are edited through a PropertyGrid that instantly re-draws the chart on any change. An MDI shell keeps all analysis windows open simultaneously for easy cross-comparison.",
     features: [
@@ -80,13 +87,15 @@ const apps = [
     requirements: "Windows 10 or Windows 11 (64-bit recommended)\n.NET Framework 4.8\n30 MB disk space\nNo additional software required",
     releaseDate: "2024",
     screenshots: ["images/vibration.jpg","images/vibration1.jpg","images/vibration2.jpg","images/vibration3.jpg","images/vibration4.jpg"],
-    downloadUrl: "https://bit.ly/structurevibration"
+    downloadUrl: "https://bit.ly/structurevibration",
+    sourceUrl:   "https://github.com/SoftwelSanjog/StructuralDynamics_Vibration"
   },
   {
     id: "app-004",
     name: "Land Area Converter",
     version: "1.0.0",
     category: "Utility",
+    tags: [".NET 4.8", "WinForms"],
     description: "A Windows desktop utility that converts land area measurements between metric units (Sq.m, Sq.ft) and traditional Nepali-Indian cadastral units (Ropani-Aana-Paisa-Daam and Bigha-Kattha-Dhur-Kanwa).",
     details: "Land Area Converter is a lightweight Windows desktop utility for civil engineers, surveyors, land administrators, and property professionals working in Nepal and northern India. It covers all 16 conversion combinations across four unit systems: Square Metres, Square Feet, Ropani-Aana-Paisa-Daam (RAPD), and Bigha-Kattha-Dhur-Kanwa (BKDK). Select a source and destination unit from the dropdowns and the result updates in real time as you type — no button press required. Traditional multi-part units are displayed and entered as separate sub-unit fields (e.g. 1 Ropani 8 Aana 2 Paisa 1 Daam), so reading and entering cadastral descriptions from land records or field surveys is direct and unambiguous.",
     features: [
@@ -99,7 +108,26 @@ const apps = [
     requirements: "Windows 10 or Windows 11 (64-bit recommended)\n.NET Framework 4.8\nNo additional software required\n< 5 MB disk space",
     releaseDate: "March 2026",
     screenshots: ["images/landarea1.jpg","images/landarea2.jpg","images/landarea3.jpg"],
-    downloadUrl: "https://bit.ly/landareaconvertor"
+    downloadUrl: "https://bit.ly/landareaconvertor",
+    sourceUrl:   ""
+  }
+];
+
+/* ─────────────────────────────────────────────
+   Academic Projects
+───────────────────────────────────────────── */
+const academicProjects = [
+  {
+    id: "acad-001",
+    name: "Probabilistic Seismic Hazard Assessment of Sankhuwasabha District",
+    institution: "Khwopa Engineering College, Bhaktapur",
+    degree: "M.E. in Earthquake Engineering",
+    releaseDate: "August 2020",
+    description: "A PSHA of Sankhuwasabha District, Nepal, covering a 600 km × 600 km region with 1,124 earthquake events (Mw 4.0–8.5, 1255–2020 AD) grouped into 9 areal source zones. Seismicity parameters were derived using the Gutenberg–Richter relation with Stepp (1972) completeness analysis and Reasenberg (1985) declustering, applying the Youngs et al. (1997) attenuation model for the subduction zone. Results yield PGA of 0.54g (rock) / 0.74g (soil) at 10% probability of exceedance in 50 years, and 0.87g (rock) / 1.32g (soil) at 2% in 50 years, with Uniform Hazard Spectra for structural design. A VBA-based PSHA computation module was also developed as part of the study.",
+    tags: ["PSHA", "Seismic Hazard", "Nepal", "G-R Relation", "Youngs et al. 1997", "Stepp 1972", "Reasenberg 1985", "UHS", "PGA", "Logic Tree"],
+    pdfUrl: "pdfs/Thesis-Sanjog-Final-Dissertation.pdf",
+    downloadUrl: "pdfs/Thesis-Sanjog-Final-Dissertation.pdf",
+    sourceUrl: ""
   }
 ];
 
@@ -261,19 +289,18 @@ function placeholderSvg() {
   </svg>`;
 }
 
-function downloadBtnHtml(url, size) {
+function downloadBtnHtml(url) {
   const isDisabled = !url || url === "#";
   const cls = isDisabled ? "btn-download disabled" : "btn-download";
-  const tag = isDisabled ? "span" : "a";
-  const href = isDisabled ? "" : `href="${escapeHtml(url)}" download`;
   const label = isDisabled ? "Coming Soon" : "Download";
-  return `<${tag} class="${cls}" ${href}>
+  const dataAttr = isDisabled ? "" : `data-dlurl="${escapeHtml(url)}"`;
+  return `<button class="${cls}" ${dataAttr} ${isDisabled ? "disabled" : ""}>
     <svg viewBox="0 0 16 16" fill="currentColor">
       <path d="M.5 9.9a.5.5 0 01.5.5v2.5a1 1 0 001 1h12a1 1 0 001-1v-2.5a.5.5 0 011 0v2.5a2 2 0 01-2 2H2a2 2 0 01-2-2v-2.5a.5.5 0 01.5-.5z"/>
       <path d="M7.646 11.854a.5.5 0 00.708 0l3-3a.5.5 0 00-.708-.708L8.5 10.293V1.5a.5.5 0 00-1 0v8.793L5.354 8.146a.5.5 0 10-.708.708l3 3z"/>
     </svg>
     ${label}
-  </${tag}>`;
+  </button>`;
 }
 
 /* ─────────────────────────────────────────────
@@ -310,11 +337,73 @@ function wireCardCarousels() {
 ───────────────────────────────────────────── */
 function getFilteredApps() {
   return apps.filter(app => {
+    if (app.category === "Academic") return false;
     const matchCat    = activeFilter === "all" || app.category === activeFilter;
     const matchSearch = app.name.toLowerCase().includes(searchQuery) ||
                         app.description.toLowerCase().includes(searchQuery) ||
                         app.category.toLowerCase().includes(searchQuery);
     return matchCat && matchSearch;
+  });
+}
+
+function showPdfViewer(project) {
+  document.getElementById("academic-section").style.display    = "none";
+  document.getElementById("pdf-viewer-section").style.display = "flex";
+  document.getElementById("pdf-viewer-title").textContent     = project.name;
+  document.getElementById("pdf-viewer-meta").textContent      =
+    [project.degree, project.institution, project.releaseDate].filter(Boolean).join("  ·  ");
+  document.getElementById("pdf-iframe").src                   = project.pdfUrl;
+  const dl = document.getElementById("pdf-download-btn");
+  dl.href = project.downloadUrl || project.pdfUrl;
+}
+
+function showAcademicGrid() {
+  document.getElementById("pdf-viewer-section").style.display = "none";
+  document.getElementById("academic-section").style.display   = "flex";
+  document.getElementById("pdf-iframe").src = "";
+}
+
+function renderAcademic() {
+  const grid = document.getElementById("academic-grid");
+
+  if (!academicProjects.length) {
+    grid.innerHTML = `<p style="color:#8b949e; padding:24px; font-size:14px;">No academic projects added yet.</p>`;
+    return;
+  }
+
+  grid.innerHTML = academicProjects.map(p => `
+    <div class="academic-card" data-acad-id="${escapeHtml(p.id)}">
+      <div class="academic-card-header">
+        <div class="academic-card-title">${escapeHtml(p.name)}</div>
+        <div class="academic-card-meta">
+          ${p.degree     ? `<span>${escapeHtml(p.degree)}</span>`      : ""}
+          ${p.institution ? `<span>${escapeHtml(p.institution)}</span>` : ""}
+          ${p.releaseDate ? `<span>${escapeHtml(p.releaseDate)}</span>` : ""}
+        </div>
+      </div>
+      <div class="academic-card-body">
+        <p class="academic-card-abstract">${escapeHtml(p.description)}</p>
+        ${p.tags && p.tags.length ? `<div class="academic-card-tags">${p.tags.map(t => `<span class="academic-card-tag">${escapeHtml(t)}</span>`).join("")}</div>` : ""}
+      </div>
+      <div class="academic-card-footer">
+        ${p.pdfUrl ? `<button class="btn-academic-view btn-view-pdf" data-acad-id="${escapeHtml(p.id)}">
+          <svg viewBox="0 0 16 16" fill="currentColor" width="13" height="13"><path d="M10.5 8a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"/><path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 100-7 3.5 3.5 0 000 7z"/></svg>
+          View Report
+        </button>` : ""}
+        ${p.downloadUrl ? `<a href="${escapeHtml(p.downloadUrl)}" download class="btn-academic-source">
+          <svg viewBox="0 0 16 16" fill="currentColor" width="13" height="13"><path d="M.5 9.9a.5.5 0 01.5.5v2.5a1 1 0 001 1h12a1 1 0 001-1v-2.5a.5.5 0 011 0v2.5a2 2 0 01-2 2H2a2 2 0 01-2-2v-2.5a.5.5 0 01.5-.5z"/><path d="M7.646 11.854a.5.5 0 00.708 0l3-3a.5.5 0 00-.708-.708L8.5 10.293V1.5a.5.5 0 00-1 0v8.793L5.354 8.146a.5.5 0 10-.708.708l3 3z"/></svg>
+          Download
+        </a>` : ""}
+      </div>
+    </div>
+  `).join("");
+
+  // Wire up view buttons
+  document.querySelectorAll(".btn-view-pdf").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const proj = academicProjects.find(p => p.id === btn.dataset.acadId);
+      if (proj) showPdfViewer(proj);
+    });
   });
 }
 
@@ -337,13 +426,13 @@ function renderCards() {
     : `${filtered.length} of ${apps.length}`;
 
   grid.innerHTML = filtered.map(app => `
-    <article class="app-card" data-id="${escapeHtml(app.id)}">
+    <article class="app-card cat-accent-${escapeHtml(app.category)}" data-id="${escapeHtml(app.id)}">
       ${thumbnailHtml(app.screenshots, app.name)}
+      <div class="card-name-header">
+        <span class="card-name">${escapeHtml(app.name)}</span>
+        <span class="card-version">v${escapeHtml(app.version)}</span>
+      </div>
       <div class="card-body">
-        <div class="card-title-row">
-          <span class="card-name">${escapeHtml(app.name)}</span>
-          <span class="card-version">v${escapeHtml(app.version)}</span>
-        </div>
         <span class="card-category ${categoryClass(app.category)}">${escapeHtml(app.category)}</span>
         <p class="card-desc">${escapeHtml(app.description)}</p>
       </div>
@@ -355,9 +444,14 @@ function renderCards() {
           </svg>
           View Details
         </button>
+        ${app.sourceUrl ? `<a href="${escapeHtml(app.sourceUrl)}" target="_blank" rel="noopener" class="btn-source card-source-btn">
+          <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          Source
+        </a>` : ""}
         ${downloadBtnHtml(app.downloadUrl)}
       </div>
       <div class="dl-count-row" id="dlcount-${escapeHtml(app.id)}" style="display:none"></div>
+      <div class="card-stars" id="stars-${escapeHtml(app.id)}"></div>
     </article>
   `).join("");
 
@@ -370,16 +464,19 @@ function renderCards() {
     });
   });
 
-  // Wire up card Download buttons for tracking + live count increment
+  // Wire up card Download buttons — require auth before downloading
   grid.querySelectorAll(".app-card").forEach(card => {
     const btn = card.querySelector(".btn-download:not(.disabled)");
     if (!btn) return;
     const app = apps.find(a => a.id === card.dataset.id);
     if (!app) return;
-    btn.addEventListener("click", async () => {
-      trackEvent(`download/${slugify(app.name)}`, `Download: ${app.name}`);
-      const newCount = await incrementCount(slugify(app.name));
-      if (newCount !== null) setCountDisplay(app.id, newCount);
+    btn.addEventListener("click", () => {
+      window.requireAuth(async () => {
+        window.open(app.downloadUrl, "_blank", "noopener");
+        trackEvent(`download/${slugify(app.name)}`, `Download: ${app.name}`);
+        const newCount = await incrementCount(slugify(app.name));
+        if (newCount !== null) setCountDisplay(app.id, newCount);
+      });
     });
   });
 
@@ -388,15 +485,28 @@ function renderCards() {
 
   // Fetch and display current counts (non-blocking)
   loadAllCounts();
+
+  // Load star ratings for all cards (non-blocking)
+  if (typeof window.loadAllStars === "function") window.loadAllStars(filtered);
 }
 
 function updateCounts() {
-  const categories = ["Civil", "CAD", "Utility", "Structural"];
-  document.getElementById("count-all").textContent = apps.length;
+  const softwareApps = apps.filter(a => a.category !== "Academic");
+  const categories   = ["Civil", "CAD", "Utility", "Structural"];
+  document.getElementById("count-all").textContent = softwareApps.length;
   categories.forEach(cat => {
     const el = document.getElementById(`count-${cat}`);
-    if (el) el.textContent = apps.filter(a => a.category === cat).length;
+    if (el) el.textContent = softwareApps.filter(a => a.category === cat).length;
   });
+
+  // Stats bar
+  const totalEl = document.getElementById("stat-total");
+  const catsEl  = document.getElementById("stat-cats");
+  if (totalEl) totalEl.textContent = softwareApps.length;
+  if (catsEl) {
+    const cats = new Set(softwareApps.map(a => a.category));
+    catsEl.textContent = cats.size;
+  }
 }
 
 function updateSectionTitle() {
@@ -463,17 +573,34 @@ function openModal(appId) {
       <span class="modal-meta-value">${escapeHtml(m.value)}</span>
     </div>`).join("");
 
+  // Source Code button in footer
+  const srcBtn = document.getElementById("modal-source-btn");
+  if (srcBtn) {
+    if (app.sourceUrl) {
+      srcBtn.href = app.sourceUrl;
+      srcBtn.style.display = "";
+    } else {
+      srcBtn.style.display = "none";
+    }
+  }
+
   // Download button in footer
   const modalDlWrap = document.getElementById("modal-download-btn");
   modalDlWrap.innerHTML = downloadBtnHtml(app.downloadUrl);
   const modalDlBtn = modalDlWrap.querySelector(".btn-download:not(.disabled)");
   if (modalDlBtn) {
-    modalDlBtn.addEventListener("click", async () => {
-      trackEvent(`download/${slugify(app.name)}`, `Download: ${app.name}`);
-      const newCount = await incrementCount(slugify(app.name));
-      if (newCount !== null) setCountDisplay(app.id, newCount);
+    modalDlBtn.addEventListener("click", () => {
+      window.requireAuth(async () => {
+        window.open(app.downloadUrl, "_blank", "noopener");
+        trackEvent(`download/${slugify(app.name)}`, `Download: ${app.name}`);
+        const newCount = await incrementCount(slugify(app.name));
+        if (newCount !== null) setCountDisplay(app.id, newCount);
+      });
     });
   }
+
+  // Load ratings for this app in modal
+  if (typeof window.openModalStars === "function") window.openModalStars(app.id);
 
   // Show modal
   document.getElementById("modal-overlay").classList.add("open");
@@ -490,6 +617,27 @@ function closeModal() {
    Event Wiring
 ───────────────────────────────────────────── */
 document.addEventListener("DOMContentLoaded", () => {
+
+  // Browse tabs (Applications / Academic Projects)
+  const appsSection     = document.getElementById("card-grid");
+  const academicSection = document.getElementById("academic-section");
+  const statsBar        = document.getElementById("stats-bar");
+  const mainHeader      = document.querySelector(".main-header");
+
+  document.querySelectorAll(".browse-tab").forEach(tab => {
+    tab.addEventListener("click", () => {
+      document.querySelectorAll(".browse-tab").forEach(t => t.classList.remove("active"));
+      tab.classList.add("active");
+
+      const isAcademic = tab.dataset.section === "academic";
+      appsSection.style.display      = isAcademic ? "none" : "";
+      academicSection.style.display  = isAcademic ? "block" : "none";
+      statsBar.style.display         = isAcademic ? "none" : "";
+      mainHeader.style.display       = isAcademic ? "none" : "";
+
+      if (isAcademic) renderAcademic();
+    });
+  });
 
   // Sidebar category filter
   document.querySelectorAll(".nav-item[data-filter]").forEach(link => {
@@ -524,6 +672,9 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("keydown", e => {
     if (e.key === "Escape") closeModal();
   });
+
+  // PDF viewer — back button
+  document.getElementById("pdf-back-btn").addEventListener("click", showAcademicGrid);
 
   // Initial render
   updateCounts();
