@@ -127,7 +127,8 @@ const academicProjects = [
     tags: ["PSHA", "Seismic Hazard", "Nepal", "G-R Relation", "Youngs et al. 1997", "Stepp 1972", "Reasenberg 1985", "UHS", "PGA", "Logic Tree"],
     pdfUrl: "pdfs/Thesis-Sanjog-Final-Dissertation.pdf",
     downloadUrl: "pdfs/Thesis-Sanjog-Final-Dissertation.pdf",
-    sourceUrl: ""
+    sourceUrl: "",
+    spreadsheetRequest: true
   }
 ];
 
@@ -394,6 +395,10 @@ function renderAcademic() {
           <svg viewBox="0 0 16 16" fill="currentColor" width="13" height="13"><path d="M.5 9.9a.5.5 0 01.5.5v2.5a1 1 0 001 1h12a1 1 0 001-1v-2.5a.5.5 0 011 0v2.5a2 2 0 01-2 2H2a2 2 0 01-2-2v-2.5a.5.5 0 01.5-.5z"/><path d="M7.646 11.854a.5.5 0 00.708 0l3-3a.5.5 0 00-.708-.708L8.5 10.293V1.5a.5.5 0 00-1 0v8.793L5.354 8.146a.5.5 0 10-.708.708l3 3z"/></svg>
           Download
         </a>` : ""}
+        ${p.spreadsheetRequest ? `<button class="btn-academic-source btn-req-spreadsheet" data-acad-id="${escapeHtml(p.id)}">
+          <svg viewBox="0 0 16 16" fill="currentColor" width="13" height="13"><path d="M14 4.5V14a2 2 0 01-2 2H4a2 2 0 01-2-2V2a2 2 0 012-2h5.5L14 4.5zm-3 0A1.5 1.5 0 019.5 3V1H4a1 1 0 00-1 1v12a1 1 0 001 1h8a1 1 0 001-1V4.5h-2z"/><path d="M8.646 6.646a.5.5 0 01.708 0l2 2a.5.5 0 010 .708l-2 2a.5.5 0 01-.708-.708L10.293 9H5.5a.5.5 0 010-1h4.793L8.646 7.354a.5.5 0 010-.708z"/></svg>
+          Request Spreadsheet
+        </button>` : ""}
       </div>
     </div>
   `).join("");
@@ -405,7 +410,75 @@ function renderAcademic() {
       if (proj) showPdfViewer(proj);
     });
   });
+
+  // Wire up spreadsheet request buttons
+  document.querySelectorAll(".btn-req-spreadsheet").forEach(btn => {
+    btn.addEventListener("click", () => showSpreadsheetRequest());
+  });
 }
+
+function showSpreadsheetRequest() {
+  // Pre-fill from Firebase auth if logged in
+  const user = window.getAuthUser ? window.getAuthUser() : null;
+  if (user) {
+    const nameEl  = document.getElementById("sr-name");
+    const emailEl = document.getElementById("sr-email");
+    if (!nameEl.value)  nameEl.value  = user.displayName || "";
+    if (!emailEl.value) emailEl.value = user.email || "";
+  }
+  document.getElementById("sr-error").style.display   = "none";
+  document.getElementById("sr-success").style.display = "none";
+  document.getElementById("spreadsheet-overlay").style.display = "flex";
+}
+window.showSpreadsheetRequest = showSpreadsheetRequest;
+
+function hideSpreadsheetRequest() {
+  document.getElementById("spreadsheet-overlay").style.display = "none";
+}
+window.hideSpreadsheetRequest = hideSpreadsheetRequest;
+
+async function submitSpreadsheetRequest(e) {
+  e.preventDefault();
+  const errEl  = document.getElementById("sr-error");
+  const sucEl  = document.getElementById("sr-success");
+  const btn    = document.getElementById("sr-btn");
+  errEl.style.display = "none";
+  sucEl.style.display = "none";
+
+  const FORMSPREE_ID = "xlgplqjr";
+  const payload = {
+    _subject:    "PSHA Spreadsheet Request",
+    name:        document.getElementById("sr-name").value.trim(),
+    email:       document.getElementById("sr-email").value.trim(),
+    institution: document.getElementById("sr-institution").value.trim(),
+    purpose:     document.getElementById("sr-purpose").value.trim(),
+    type:        "spreadsheet-request"
+  };
+
+  btn.disabled    = true;
+  btn.textContent = "Sending…";
+  try {
+    const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+      method:  "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body:    JSON.stringify(payload)
+    });
+    if (res.ok) {
+      sucEl.textContent   = "Request sent! You'll receive the spreadsheet at your email shortly.";
+      sucEl.style.display = "block";
+      document.getElementById("form-spreadsheet-req").reset();
+    } else {
+      throw new Error("Server error");
+    }
+  } catch {
+    errEl.textContent   = "Failed to send. Please try again or email directly.";
+    errEl.style.display = "block";
+  } finally {
+    btn.disabled    = false;
+    btn.textContent = "Send Request";
+  }
+}
+window.submitSpreadsheetRequest = submitSpreadsheetRequest;
 
 function renderCards() {
   const grid       = document.getElementById("card-grid");
