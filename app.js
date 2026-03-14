@@ -721,10 +721,16 @@ document.addEventListener("DOMContentLoaded", () => {
       tab.classList.add("active");
 
       const isAcademic = tab.dataset.section === "academic";
-      appsSection.style.display      = isAcademic ? "none" : "";
-      academicSection.style.display  = isAcademic ? "block" : "none";
-      statsBar.style.display         = isAcademic ? "none" : "";
-      mainHeader.style.display       = isAcademic ? "none" : "";
+
+      // Always reset pdf viewer when switching tabs
+      const pdfSection = document.getElementById("pdf-viewer-section");
+      pdfSection.style.display = "none";
+      document.getElementById("pdf-iframe").src = "";
+
+      appsSection.style.display     = isAcademic ? "none" : "";
+      academicSection.style.display = isAcademic ? "flex" : "none";
+      statsBar.style.display        = isAcademic ? "none" : "";
+      mainHeader.style.display      = isAcademic ? "none" : "";
 
       if (isAcademic) renderAcademic();
     });
