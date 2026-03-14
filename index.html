@@ -11,10 +11,33 @@
 </head>
 <body>
 
+  <!-- Mobile top bar (hidden on desktop) -->
+  <header class="mobile-topbar">
+    <div class="sidebar-logo" style="border:none; padding:0;">
+      <svg class="logo-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="2" y="3" width="9" height="9" rx="1.5" fill="#4a9eff"/>
+        <rect x="13" y="3" width="9" height="9" rx="1.5" fill="#4a9eff" opacity="0.6"/>
+        <rect x="2" y="14" width="9" height="9" rx="1.5" fill="#4a9eff" opacity="0.6"/>
+        <rect x="13" y="14" width="9" height="9" rx="1.5" fill="#4a9eff" opacity="0.3"/>
+      </svg>
+      <div class="logo-text">
+        <span class="logo-title">Sanjog's Library</span>
+        <span class="logo-sub">Engineering Apps & Research</span>
+      </div>
+    </div>
+    <button class="hamburger-btn" id="hamburger-btn" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <!-- Sidebar backdrop (mobile only) -->
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
   <div class="layout">
 
     <!-- Sidebar -->
-    <aside class="sidebar">
+    <aside class="sidebar" id="sidebar">
+      <button class="sidebar-close-btn" id="sidebar-close-btn" aria-label="Close menu">&#x2715;</button>
       <div class="sidebar-logo">
         <svg class="logo-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect x="2" y="3" width="9" height="9" rx="1.5" fill="#4a9eff"/>
@@ -24,7 +47,7 @@
         </svg>
         <div class="logo-text">
           <span class="logo-title">Sanjog's Library</span>
-          <span class="logo-sub">Software Showcase</span>
+          <span class="logo-sub">Engineering Apps & Research</span>
         </div>
       </div>
 

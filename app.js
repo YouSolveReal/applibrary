@@ -691,6 +691,24 @@ function closeModal() {
 ───────────────────────────────────────────── */
 document.addEventListener("DOMContentLoaded", () => {
 
+  // ── Mobile sidebar drawer ────────────────────────────────────────────────
+  const sidebar        = document.getElementById("sidebar");
+  const sidebarOverlay = document.getElementById("sidebar-overlay");
+  const hamburgerBtn   = document.getElementById("hamburger-btn");
+  const sidebarCloseBtn = document.getElementById("sidebar-close-btn");
+
+  function openSidebar()  { sidebar.classList.add("open"); sidebarOverlay.classList.add("open"); }
+  function closeSidebar() { sidebar.classList.remove("open"); sidebarOverlay.classList.remove("open"); }
+
+  if (hamburgerBtn)   hamburgerBtn.addEventListener("click", openSidebar);
+  if (sidebarCloseBtn) sidebarCloseBtn.addEventListener("click", closeSidebar);
+  if (sidebarOverlay) sidebarOverlay.addEventListener("click", closeSidebar);
+
+  // Close sidebar when a nav item is tapped on mobile
+  document.querySelectorAll(".nav-item").forEach(item => {
+    item.addEventListener("click", () => { if (window.innerWidth <= 768) closeSidebar(); });
+  });
+
   // Browse tabs (Applications / Academic Projects)
   const appsSection     = document.getElementById("card-grid");
   const academicSection = document.getElementById("academic-section");
